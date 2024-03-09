@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-boilerplate
+  namespace: pintu-assessment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-boilerplate
+  template:
+    metadata:
+      labels:
+        app: python-boilerplate
+    spec:
+      containers:
+      - name: python
+        image: 563940537117.dkr.ecr.us-east-1.amazonaws.com/python-project-boilerplate:latest
+        ports:
+        - containerPort: 80
+

@@ -63,6 +63,7 @@ pyOpenSSL==21.0.0
 pyparsing==2.4.7
 pyrsistent==0.18.1
 pyserial==3.5
+pytest==8.0.2
 python-apt==2.4.0+ubuntu3
 python-debian==0.1.43+ubuntu1.1
 python-magic==0.4.24
