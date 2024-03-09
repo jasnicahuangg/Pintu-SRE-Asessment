@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/python_project_boilerplate/__init__.py
+src/python_project_boilerplate/main.py
+src/python_project_boilerplate/utils.py
+src/python_project_boilerplate.egg-info/PKG-INFO
+src/python_project_boilerplate.egg-info/SOURCES.txt
+src/python_project_boilerplate.egg-info/dependency_links.txt
+src/python_project_boilerplate.egg-info/entry_points.txt
+src/python_project_boilerplate.egg-info/not-zip-safe
+src/python_project_boilerplate.egg-info/requires.txt
+src/python_project_boilerplate.egg-info/top_level.txt
+tests/test_hello_world.py

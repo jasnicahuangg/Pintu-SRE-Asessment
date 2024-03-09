@@ -1,0 +1,2 @@
+[console_scripts]
+python_project_boilerplate = python_project_boilerplate.main:main

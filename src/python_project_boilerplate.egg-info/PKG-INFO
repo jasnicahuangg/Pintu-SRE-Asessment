@@ -1,3 +1,29 @@
+Metadata-Version: 2.1
+Name: python_project_boilerplate
+Version: 1.0.0
+Summary: Python project boilerplate
+Author: compiuta srl
+Author-email: it@compiuta.com
+License: MIT
+Keywords: project,boilerplate
+Platform: unix
+Platform: linux
+Platform: osx
+Platform: win32
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: requests>=2.28.1
+Provides-Extra: testing
+Requires-Dist: pytest>=7.1.2; extra == "testing"
+
 # 🐍 Python Project Boilerplate
 
 We kept this project simple on purpose, it is intended as a starting point for any Python project: ML packages, backend microservices or whatever the best programming language in the world (🐍) is awesome for! For example, [we](https://www.compiuta.com)'ve used it to bootstrap multiple [Connhex](https://www.connhex.com) services.
