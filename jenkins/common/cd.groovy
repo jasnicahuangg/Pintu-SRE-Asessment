@@ -14,6 +14,7 @@ pipeline {
         DOCKER_IMAGE_TAG = 'latest'
         KUBE_CONFIG = credentials("kube-config-${ENVIRONMENT}")
         DEPLOYMENT_NAME = 'python-boilerplate'
+        NAMESPACE = 'pintu-assessment'
     }
 
     stages {
@@ -23,7 +24,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to ELK') {
+        stage('Deploy to EKS') {
             steps {
                 script {
                     // Authenticate with AWS ECR
@@ -40,7 +41,7 @@ pipeline {
                     // Wait for deployment to finish
                     timeout(time: 5, unit: 'minutes') {
                         waitUntil {
-                            def status = sh(script: "kubectl --kubeconfig=${KUBE_CONFIG} get deployment ${DEPLOYMENT_NAME} -o jsonpath='{.status.conditions[?(@.type==\"Available\")].status}'", returnStatus: true).trim()
+                            def status = sh(script: "kubectl --kubeconfig=${KUBE_CONFIG} get deployment ${DEPLOYMENT_NAME} -n ${NAMESPACE} -o jsonpath='{.status.conditions[?(@.type==\"Available\")].status}'", returnStatus: true).trim()
                             return status == 'True'
                         }
                     }
@@ -52,14 +53,14 @@ pipeline {
             when {
                 expression {
                     // Check deployment status
-                    def status = sh(script: "kubectl --kubeconfig=${KUBE_CONFIG} get deployment ${DEPLOYMENT_NAME} -o jsonpath='{.status.conditions[?(@.type==\"Available\")].status}'", returnStatus: true).trim()
+                    def status = sh(script: "kubectl --kubeconfig=${KUBE_CONFIG} get deployment ${DEPLOYMENT_NAME} -n ${NAMESPACE} -o jsonpath='{.status.conditions[?(@.type==\"Available\")].status}'", returnStatus: true).trim()
                     return status != 'True'
                 }
             }
             steps {
                 script {
                     // Rollback deployment
-                    sh "kubectl --kubeconfig=${KUBE_CONFIG} rollout undo deployment ${DEPLOYMENT_NAME}"
+                    sh "kubectl --kubeconfig=${KUBE_CONFIG} rollout undo deployment ${DEPLOYMENT_NAME} -n ${NAMESPACE}"
                 }
             }
         }
